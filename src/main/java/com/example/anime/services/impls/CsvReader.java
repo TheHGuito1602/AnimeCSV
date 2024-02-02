@@ -52,7 +52,7 @@ public class CsvReader implements IAnimeRepository {
         Integer vote = (!campos[2].isEmpty()) ? Integer.parseInt(campos[2]) : null;
         Integer ranked = (!campos[3].isEmpty()) ? Integer.parseInt(campos[3]) : null;
         Integer popularity = (!campos[4].isEmpty()) ? Integer.parseInt(campos[4]) : null;
-        Integer episodes = (!campos[5].isEmpty() || campos[5].equalsIgnoreCase("unknown")) ? null
+        Integer episodes = (campos[5] == null || campos[5].isEmpty() || campos[5].equalsIgnoreCase("unknown")) ? null
                 : Integer.parseInt(campos[5]);
         String status = campos[6];
         Fecha[] aired = obtenerFecha(campos[7].replaceAll("\"", ""));
