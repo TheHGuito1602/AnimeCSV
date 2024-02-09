@@ -174,7 +174,7 @@ public class AnimeServiceImpl implements AnimeService {
     }
 
     @Override
-    public String repeatedRating() {
+    public String[] repeatedRating() {
         Map<String, Long> RatingRepeat = animeList.stream()//Se genera un Map para capturar los Rating de cada entrada
                 .filter(e->!e.getRating().equals("None"))//No deja pasar a los casos no deseados
                 .collect(Collectors.groupingBy(Anime::getRating, Collectors.counting()));//Genera una agrupacion
@@ -187,12 +187,12 @@ public class AnimeServiceImpl implements AnimeService {
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
                 .orElse(null); // null para cualquier otro caso que no sea la respuesta esperada
-
-        return generoMasPopular;
+        String[] resultado = new String[]{generoMasPopular};
+        return resultado;
     }
 
     @Override
-    public String lessRepeatedRating() {
+    public String[] lessRepeatedRating() {
         Map<String, Long> RatingRepeat = animeList.stream()
                 .filter(e->!e.getRating().equals("None"))
                 .collect(Collectors.groupingBy(Anime::getRating, Collectors.counting()));
@@ -201,12 +201,12 @@ public class AnimeServiceImpl implements AnimeService {
             return null; // O cualquier otro valor por defecto si la lista está vacía
         }
 
-        String generoMasPopular = RatingRepeat.entrySet().stream()
+        String generoMenosPopular = RatingRepeat.entrySet().stream()
                 .min(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
                 .orElse(null); // null para cualquier otro caso que no sea la respuesta esperada
-
-        return generoMasPopular;
+        String[] resultado = new String[]{generoMenosPopular};
+        return resultado;
     }
 
     @Override

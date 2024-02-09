@@ -171,7 +171,7 @@ public class AnimeController {
     }
 
     @GetMapping("/most/repeat/rating")
-    public ResponseEntity<String> mostRepeatRating(){
+    public ResponseEntity<String[]> mostRepeatRating(){
         return Optional
                 .of(animeServices.repeatedRating())
                 .map(ResponseEntity::ok)
@@ -179,7 +179,7 @@ public class AnimeController {
     }
 
     @GetMapping("/least/repeat/rating")
-    public ResponseEntity<String> leastRepeatRating(){
+    public ResponseEntity<String[]> leastRepeatRating(){
         return Optional
                 .of(animeServices.lessRepeatedRating())
                 .map(ResponseEntity::ok)

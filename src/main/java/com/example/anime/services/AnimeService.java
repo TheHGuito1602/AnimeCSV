@@ -30,8 +30,8 @@ public interface AnimeService {
     Anime findDurationMin();
     List<Anime> findByScoreRange(Float min, Float max);
     List<Anime> findByTitle(String name);
-    String repeatedRating();
-    String lessRepeatedRating();
+    String[] repeatedRating();
+    String[] lessRepeatedRating();
     Anime newestAired();
     Anime oldestAired();
     String [] findAllStudios();
